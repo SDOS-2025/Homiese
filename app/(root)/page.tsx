@@ -5,7 +5,10 @@ import ScrollPage from "@/app/Components/scrollpage";
 export default function Home (){
 
   return (
-      <div>
+      <div className="">
+
+          Hello World!
+
 
       </div>
   );

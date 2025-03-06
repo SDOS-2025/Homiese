@@ -2,20 +2,18 @@ import React from "react";
 import Navbar from "@/app/Components/navbar";
 import SideBar from "@/app/Components/sidebar";
 
-export default function Layout({children} : Readonly<{children : React.ReactNode}>) {
-
+export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <>
-           <div className="h-screen w-full ">
-               {children}
-               <Navbar />
-               <SideBar />
+        <div className="flex">
 
-           </div>
+            <div className="w-[300px]">
+                <SideBar />
+            </div>
 
-
-
-
-        </>
-    )
+            <div className="flex-1">
+                <Navbar />
+                <main className="p-4">{children}</main>
+            </div>
+        </div>
+    );
 }

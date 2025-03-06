@@ -12,11 +12,12 @@ export default function TransitionButton(
 ) {
 
     return (
-        <div className="border-2 border-gray100 flex items-center gap-x-4 rounded-xl w-full px-12 py-2  ">
-            <Image src={svg} alt="Homiese" width={30} height={30} />
+        <div className="flex items-start gap-x-4 justify-start rounded-lg w-full px-12 py-2 flex-wrap  font-work-sans content-center text-md
+            hover:bg-gray-100 hover:text-red-400 cursor-pointer
+        ">
+            <Image src={svg} alt="Homiese" width={25} height={30} />
 
             {text}
-
         </div>
     );
 }
