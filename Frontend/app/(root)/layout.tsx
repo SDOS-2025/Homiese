@@ -4,15 +4,20 @@ import SideBar from "@/app/Components/sidebar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="flex">
-
-            <div className="w-[300px]">
+        <div className="flex h-screen ">
+            {/* Fixed Sidebar */}
+            <div className="w-[250px] fixed h-full bg-white shadow-lg">
                 <SideBar />
             </div>
 
-            <div className="flex-1">
-                <Navbar />
-                <main className="p-4">{children}</main>
+            {/* Main Content Area */}
+            <div className="flex-1 ml-[250px]">
+                <div className="fixed top-0 left-[250px] right-0 bg-white shadow-md z-10">
+                    <Navbar />
+                </div>
+
+                {/* Content below navbar */}
+                <main className="p-4 mt-[60px] bg-gray-200">{children}</main>
             </div>
         </div>
     );

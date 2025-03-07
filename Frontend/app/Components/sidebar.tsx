@@ -4,7 +4,7 @@ import TransitionButton from "@/app/Components/transitionButton";
 export default function SideBar(){
 
     return (
-        <div className="top-0 fixed w-[300] h-full shadow-xl bg-white flex flex-col item-center gap-y-12 py-5">
+        <div className="top-0 z-10 fixed w-[250] h-full shadow-xl bg-white flex flex-col item-center gap-y-12 py-5">
             <Image src="/Homiese.svg" alt="Homiese"  width={140} height={30} className="ml-12 mt-4"/>
 
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Navbar() {
 
     return (
-    <div className="flex gap-x-10 justify-end shadow-sm h-16">
+    <div className="flex gap-x-10 justify-end shadow-sm bg-white h-16">
 
         <div className="flex items-center gap-x-4 font-work-sans mx-6">
             <Image src="/chat.png" alt="Chat"  width={40} height={30}/>
