@@ -17,7 +17,7 @@ export default function ChatAvatar(
 
 ){
     return (
-        <div className="flex gap-5 text-xs ">
+        <div className="flex gap-4 text-xs ">
             <Image src={imgPath} alt="UserAvatar" width={50} height={50} />
             <div className="flex flex-col">
                 <span className="font-bold truncate whitespace-nowrap overflow-hidden">
