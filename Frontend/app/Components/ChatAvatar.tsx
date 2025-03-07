@@ -24,10 +24,10 @@ export default function ChatAvatar(
                     {name}
                 </span>
 
-
                 <span className="text-xs truncate whitespace-nowrap overflow-hidden w-24">
                     {AdditionalInfo}
                 </span>
+
             </div>
 
             <div className="flex flex-col text-sm">
