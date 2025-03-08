@@ -25,7 +25,7 @@ export default function CollegePage() {
                 {/* College Info Header */}
                 <div className="flex items-center mt-4">
                     <Image src={logo} alt={name} width={80} height={80} className="mr-4" />
-                    <h1 className="text-2xl font-bold">{name}</h1>
+                    <h1 className="text-2xl font-bold text-gray-500">{name}</h1>
                 </div>
 
                 {/* Buttons */}

@@ -1,5 +1,5 @@
 
-import Layout from "@/app/(root)/layout";
+import Layout from "@/app/college-Info/infopage_layout";
 import CollegePage from "@/app/college-Info/college_info";
 
 export default function CollegeInfoPage() {
