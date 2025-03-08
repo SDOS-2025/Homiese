@@ -11,6 +11,11 @@ export default function CollegePage() {
         highlights,
         admissionProcess,
         mentorButton,
+        Courses,
+        Fees,
+        Placements, 
+        Scholarships, 
+        reviews,
         relatedPostsButton
     } = collegeData;
 
@@ -34,17 +39,54 @@ export default function CollegePage() {
                     <button className="bg-gray-300 text-black px-4 py-2 rounded-lg shadow">{relatedPostsButton}</button>
                 </div>
 
-                {/* College Highlights */}
-                <div className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
+                {/* College Info */}
+                <div id="college-info" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
                     <h2 className="text-xl font-semibold">IIIT Delhi Highlights 2024</h2>
                     <p className="mt-2 text-gray-300 text-justify">{highlights}</p>
                 </div>
 
+                {/* Courses  */}
+
+                <div id="courses" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
+                    <h2 className="text-xl font-semibold">Courses</h2>
+                    <p className="mt-2 text-gray-300 text-justify">{Courses}</p>
+                </div>
+
                 {/* Admission Process */}
-                <div className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
+                <div id="admissions" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
                     <h2 className="text-xl font-semibold">IIIT Delhi Admission Process and Important Dates 2024</h2>
                     <p className="mt-2 text-gray-300 text-justify">{admissionProcess}</p>
                 </div>
+
+                {/* Fees */}
+
+                <div id="fees" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
+                    <h2 className="text-xl font-semibold">Fees</h2>
+                    <p className="mt-2 text-gray-300 text-justify">{Fees}</p>
+                </div>
+
+                {/* Placements */}
+
+                <div id="placements" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
+                    <h2 className="text-xl font-semibold">Placements</h2>
+                    <p className="mt-2 text-gray-300 text-justify">{Placements}</p>
+                </div>
+
+                {/* Scholarships */}
+
+                <div id="scholarships" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
+                    <h2 className="text-xl font-semibold">Scholarships</h2>
+                    <p className="mt-2 text-gray-300 text-justify">{Scholarships}</p>
+                </div>
+
+                {/* reviews */}
+
+                <div id="reviews" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
+                    <h2 className="text-xl font-semibold">reviews</h2>
+                    <p className="mt-2 text-gray-300 text-justify">{reviews}</p>
+                </div>
+
+
             </div>
     );
 }
