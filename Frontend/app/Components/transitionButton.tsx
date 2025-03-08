@@ -17,7 +17,8 @@ export default function TransitionButton(
         ">
             <Image src={svg} alt="Homiese" width={25} height={30} />
 
-            {text}
+            <span className="text-gray-700">{text}</span>
         </div>
     );
 }
+
