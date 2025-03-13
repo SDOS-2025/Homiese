@@ -22,7 +22,7 @@ export default function Post(
 
 ){
     return (
-        <div className={"flex flex-col gap-2 p-5 bg-white shadow-md rounded-xl"}>
+        <div className={"flex flex-col gap-2 p-5 bg-white shadow-md rounded-xl text-black"}>
 
             <div className={"flex items-center gap-2 text-sm"}>
                 <Image src={ContentProfileImage} alt={"User Profile"} width={50} height={50} />

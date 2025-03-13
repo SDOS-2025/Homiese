@@ -3,7 +3,7 @@ import ChatAvatar from "@/app/Components/ChatAvatar";
 
 export default function TopChats(){
     return (
-        <div className="w-full h-[40%] flex flex-col justify-around bg-white px-3 mx-2 rounded-2xl shadow-xl text-sm ">
+        <div className="w-full h-[40%] flex flex-col justify-around bg-white px-3 mx-2 rounded-2xl shadow-xl text-sm text-black">
             <span className="flex items-center justify-center text-red-400 font-semibold">
                 Based on your communities
             </span>

@@ -13,6 +13,7 @@ export default function Navbar() {
             {/*User Name*/}
             <span>Shaan Alam </span>
             <Image src="/Dropdown.png" alt="Login"  width={15} height={15}/>
+            
         </div>
     </div>
     );

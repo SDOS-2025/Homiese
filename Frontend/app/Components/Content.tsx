@@ -27,23 +27,33 @@ export default function Content() {
 
     const Userposts = [
         {
-            ContentDescription: "This is a User page",
+            ContentDescription: "Top Mistakes to Avoid When Choosing a College:\nIgnoring Location: Distance, weather, and job opportunities can impact your experience more than you expect..",
             ContentImage: true,
-            ContentPostedBy: "You",
+            ContentPostedBy: "Deepesh",
             ContentProfileImage: "/UserImg.svg",
-            ContentTitle: "SDOS Sucks",
+            ContentTitle: "TOP Mistakes I did while choosing the college",
             ContentLiked: 26,
-            ContentImagePath: "/contentImage.svg",
+            ContentImagePath: "/post_image.jpeg",
         },
         {
-            ContentDescription: "React is awesome!",
-            ContentImage: false,
-            ContentPostedBy: "John Doe",
-            ContentProfileImage: "/UserImg.svg",
-            ContentTitle: "Why React Rocks",
-            ContentLiked: 102,
-            ContentImagePath: "",
+            "ContentTitle": "How to Make the Best Use of College Life",
+            "ContentDescription": "Get involved in clubs, build strong networks, explore internships, and develop valuable skills beyond academics. These years can shape your future!",
+            "ContentImage": true,
+            "ContentPostedBy": "Ashish Bargoti",
+            "ContentProfileImage": "/UserImg.svg",
+            "ContentLiked": 87,
+            "ContentImagePath": "/collegeLife.jpg"
+        },
+        {
+            "ContentTitle": "Ask a Question",
+            "ContentDescription": "Is it true that IITD is more research focused than any other JAC colleges",
+            "ContentImage": false,
+            "ContentPostedBy": "Ashish Bargoti",
+            "ContentProfileImage": "/UserImg.svg",
+            "ContentLiked": 87,
+            "ContentImagePath": "/collegeLife.jpg"
         }
+        
     ];
 
     return (

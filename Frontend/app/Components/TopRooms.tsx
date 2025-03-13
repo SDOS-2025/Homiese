@@ -2,7 +2,7 @@ import ChatAvatar from "@/app/Components/ChatAvatar";
 
 export default function TopRooms(){
     return (
-        <div className="w-full h-[40%] flex flex-col justify-around bg-white px-3 mx-2 rounded-2xl shadow-xl text-sm ">
+        <div className="w-full h-[40%] flex flex-col justify-around bg-white px-3 mx-2 rounded-2xl shadow-xl text-sm text-black">
             <span className="flex px-2 text-red-400 font-semibold">
                 People you may know
             </span>

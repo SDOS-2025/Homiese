@@ -5,7 +5,7 @@ export default function CommentSection() {
 
     return (
         <div>
-            <span className={"text-red-500"}>
+            <span className={"text-red-500"} text-black>
                 Comments:
             </span>
 
