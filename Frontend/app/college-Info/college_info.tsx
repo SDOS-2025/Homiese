@@ -51,7 +51,7 @@ export default function CollegePage() {
                         ${tab === 0 ? "bg-red-400 text-white" : "bg-white text-black"}
                     `}
                 >
-                    Info
+                    About
                 </div>
 
                 <div
