@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </div>
 
                 {/* Content below navbar */}
-                <main className=" flex-1 p-4 mt-[60px]  ml-[250px]">{children}</main>
+                <main className="flex-1 p-4 mt-[60px] ml-[250px]">{children}</main>
             </div>
         </div>
     );

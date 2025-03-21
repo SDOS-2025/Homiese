@@ -1,7 +1,11 @@
-import React from "react";
-// import Layout from "@/app/layout";
+"use client"
+
+import React, {useState} from "react";
 import Image from "next/image";
 import collegeData from "@/app/college-Info/collegeData.json";
+import CollegeAbout from "@/app/Components/collegeAbout";
+import MentorPage from "@/app/Components/MentorPage";
+import RelatedPostsCollege from "@/app/Components/relatedPostsCollege";
 
 export default function CollegePage() {
     const {
@@ -10,84 +14,91 @@ export default function CollegePage() {
         banner,
         highlights,
         admissionProcess,
-        mentorButton,
-        Courses,
-        Fees,
-        Placements, 
-        Scholarships, 
-        reviews,
-        relatedPostsButton
+        mentors,
+        courses,
+        fees,
+        placements,
+        scholarships,
+        reviews
     } = collegeData;
+
+
+    const [tab, setTab] = useState<number>(0);
+
+    // tab = 0 => info page
+    // tab = 1 => mentors page
+    // tab = 2 => relatedPost page
 
     return (
 
-            <div className="p-6 max-w-4xl mx-auto">
-                {/* Banner Image */}
-                <div className="relative w-full h-48">
-                    <Image src={banner} alt={name} layout="fill" objectFit="cover" className="rounded-lg" />
+        <div className="p-6 flex flex-col gap-y-4 max-w-4xl mx-auto">
+            {/* banner Image */}
+            <div className="relative w-full h-48">
+                <Image src={banner} alt={name} layout="fill" objectFit="cover" className="rounded-lg"/>
+            </div>
+
+            {/* College Info Header */}
+            <div className="flex items-center">
+                <Image src={logo} alt={name} width={80} height={80} className="mr-4"/>
+                <h1 className="text-2xl font-bold text-gray-500">{name}</h1>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex gap-4">
+               <div
+                    onClick={() => setTab(0)}
+                    className={`rounded-xl shadow-sm w-[50%] h-10 flex justify-center items-center cursor-pointer 
+                        ${tab === 0 ? "bg-red-400 text-white" : "bg-white text-black"}
+                    `}
+                >
+                    Info
                 </div>
 
-                {/* College Info Header */}
-                <div className="flex items-center mt-4">
-                    <Image src={logo} alt={name} width={80} height={80} className="mr-4" />
-                    <h1 className="text-2xl font-bold text-gray-500">{name}</h1>
+                <div
+                    onClick={() => setTab(1)}
+                    className={`rounded-xl shadow-sm w-[50%] h-10 flex justify-center items-center cursor-pointer 
+                        ${tab === 1 ? "bg-red-400 text-white" : "bg-white text-black"}
+                    `}
+                >
+                    Mentors
                 </div>
 
-                {/* Buttons */}
-                <div className="mt-4 flex gap-4">
-                    <button className="bg-pink-500 text-white px-4 py-2 rounded-lg shadow">{mentorButton}</button>
-                    <button className="bg-gray-300 text-black px-4 py-2 rounded-lg shadow">{relatedPostsButton}</button>
+                <div
+                    onClick={() => setTab(2)}
+                    className={`rounded-xl shadow-sm w-[50%] h-10 flex justify-center items-center cursor-pointer 
+                        ${tab === 2 ? "bg-red-400 text-white" : "bg-white text-black"}
+                    `}
+                >
+                    Related Posts
                 </div>
 
-                {/* College Info */}
-                <div id="college-info" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
-                    <h2 className="text-xl font-semibold">IIIT Delhi Highlights 2024</h2>
-                    <p className="mt-2 text-gray-300 text-justify">{highlights}</p>
-                </div>
-
-                {/* Courses  */}
-
-                <div id="courses" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
-                    <h2 className="text-xl font-semibold">Courses</h2>
-                    <p className="mt-2 text-gray-300 text-justify">{Courses}</p>
-                </div>
-
-                {/* Admission Process */}
-                <div id="admissions" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
-                    <h2 className="text-xl font-semibold">IIIT Delhi Admission Process and Important Dates 2024</h2>
-                    <p className="mt-2 text-gray-300 text-justify">{admissionProcess}</p>
-                </div>
-
-                {/* Fees */}
-
-                <div id="fees" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
-                    <h2 className="text-xl font-semibold">Fees</h2>
-                    <p className="mt-2 text-gray-300 text-justify">{Fees}</p>
-                </div>
-
-                {/* Placements */}
-
-                <div id="placements" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
-                    <h2 className="text-xl font-semibold">Placements</h2>
-                    <p className="mt-2 text-gray-300 text-justify">{Placements}</p>
-                </div>
-
-                {/* Scholarships */}
-
-                <div id="scholarships" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
-                    <h2 className="text-xl font-semibold">Scholarships</h2>
-                    <p className="mt-2 text-gray-300 text-justify">{Scholarships}</p>
-                </div>
-
-                {/* reviews */}
-
-                <div id="reviews" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
-                    <h2 className="text-xl font-semibold">reviews</h2>
-                    <p className="mt-2 text-gray-300 text-justify">{reviews}</p>
-                </div>
 
 
             </div>
+
+            {tab === 0 && (
+                <CollegeAbout
+                    Highlights={highlights}
+                    Courses={courses}
+                    Fees={fees}
+                    Placements={placements}
+                    Scholarships={scholarships}
+                    Reviews={reviews}
+                    AdmissionProcess={admissionProcess}
+                />
+            )}
+
+            {tab === 1 && (
+                <MentorPage mentors={mentors} />
+            )}
+
+            {tab === 2 && (
+                <RelatedPostsCollege />
+            )}
+
+
+
+        </div>
     );
 }
 
