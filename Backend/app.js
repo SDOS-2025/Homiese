@@ -1,27 +1,28 @@
 
-const express = require('express'); // import express
-const cors = require('cors');       // import cors
-require('dotenv').config();         // load env variables
+const express=require('express');
+const cors=require('cors');
 
-const app = express();              // create express app
-const PORT = process.env.PORT || 5000; // port to run server on
+const app=express()
+const PORT=5000;
 
-// Middleware (these run before routes)
-app.use(cors());                    // allow cross-origin
-app.use(express.json());            // parse JSON body from frontend
 
-// Routes
-app.post('/api/signup', (req, res) => {
-  const { username, email, password } = req.body; // get data from frontend
-  console.log('Signup data received:', { username, email, password });
+app.use(cors())
+// it is going to allow the frontend to talk to backend
 
-  // In real life: Save this to a database
-  res.status(201).json({ message: 'Signup successful!' });
+app.use(express.json());
+
+
+app.post('/api/signup',(req,res)=>{
+  const user={fullname,email,password,confirmPassword}=req.body;
+  console.log("received signup data");
+  console.log(fullname,email,password,confirmPassword)
+  console.log(user)
+  console.log("data received successfully!")
+
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(PORT,()=>{
+  console.log("server is running on port 5000");
 });
 
 
