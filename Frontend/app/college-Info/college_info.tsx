@@ -1,6 +1,6 @@
-"use client"
-
-import React, {useState} from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import collegeData from "@/app/college-Info/collegeData.json";
 import CollegeAbout from "@/app/Components/collegeAbout";
@@ -8,44 +8,36 @@ import MentorPage from "@/app/Components/MentorPage";
 import RelatedPostsCollege from "@/app/Components/relatedPostsCollege";
 
 export default function CollegePage() {
-    const {
-        name,
-        logo,
-        banner,
-        highlights,
-        admissionProcess,
-        mentors,
-        courses,
-        fees,
-        placements,
-        scholarships,
-        reviews
-    } = collegeData;
+    const searchParams = useSearchParams();
+    const query = searchParams.get("page") || "";
 
+    // Find the matching college data
+    const college = collegeData.find((c) => c.name.toLowerCase() === query.toLowerCase());
 
     const [tab, setTab] = useState<number>(0);
 
-    // tab = 0 => info page
-    // tab = 1 => mentors page
-    // tab = 2 => relatedPost page
+    if (!college) {
+        return (
+            <div className="p-6 flex flex-col items-center text-gray-500">
+                <h2 className="text-2xl font-bold">College Not Found</h2>
+                <p>Try searching for a different college.</p>
+            </div>
+        );
+    }
 
     return (
-
         <div className="p-6 flex flex-col gap-y-4 max-w-4xl mx-auto">
-            {/* banner Image */}
             <div className="relative w-full h-48">
-                <Image src={banner} alt={name} layout="fill" objectFit="cover" className="rounded-lg"/>
+                <Image src={college.banner} alt={college.name} layout="fill" objectFit="cover" className="rounded-lg"/>
             </div>
 
-            {/* College Info Header */}
             <div className="flex items-center">
-                <Image src={logo} alt={name} width={80} height={80} className="mr-4"/>
-                <h1 className="text-2xl font-bold text-gray-500">{name}</h1>
+                <Image src={college.logo} alt={college.name} width={80} height={80} className="mr-4"/>
+                <h1 className="text-2xl font-bold text-gray-500">{college.name}</h1>
             </div>
 
-            {/* Buttons */}
             <div className="flex gap-4">
-               <div
+                <div
                     onClick={() => setTab(0)}
                     className={`rounded-xl shadow-sm w-[50%] h-10 flex justify-center items-center cursor-pointer 
                         ${tab === 0 ? "bg-red-400 text-white" : "bg-white text-black"}
@@ -71,34 +63,23 @@ export default function CollegePage() {
                 >
                     Related Posts
                 </div>
-
-
-
             </div>
 
             {tab === 0 && (
                 <CollegeAbout
-                    Highlights={highlights}
-                    Courses={courses}
-                    Fees={fees}
-                    Placements={placements}
-                    Scholarships={scholarships}
-                    Reviews={reviews}
-                    AdmissionProcess={admissionProcess}
+                    Highlights={college.highlights}
+                    Courses={college.courses}
+                    Fees={college.fees}
+                    Placements={college.placements}
+                    Scholarships={college.scholarships}
+                    Reviews={college.reviews}
+                    AdmissionProcess={college.admissionProcess}
                 />
             )}
 
-            {tab === 1 && (
-                <MentorPage mentors={mentors} />
-            )}
+            {tab === 1 && <MentorPage mentors={college.mentors} />}
 
-            {tab === 2 && (
-                <RelatedPostsCollege />
-            )}
-
-
-
+            {tab === 2 && <RelatedPostsCollege />}
         </div>
     );
 }
-

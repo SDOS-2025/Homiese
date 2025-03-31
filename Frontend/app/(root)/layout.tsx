@@ -12,31 +12,27 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const handleSearch = () => {
         if (searchQuery.trim() !== "") {
             setShowSearch(false); // Hide modal
-            router.push(`/college-Info`); // Navigate to College Info page
+            router.push(`/college-Info?page=${encodeURIComponent(searchQuery)}`); // Pass search query via URL
         }
     };
 
     return (
         <div className="flex h-screen flex-1 overflow-auto bg-gray-200 relative">
-            {/* Fixed Sidebar (Always Visible) */}
             <div className="w-[250px] z-20 fixed h-full bg-white shadow-lg">
                 <SideBar onCollegeInfoClick={() => setShowSearch(true)} />
             </div>
 
-            {/* Main Content Area */}
             <div className={`flex-1 transition-all duration-300 ${showSearch ? "blur-md" : ""}`}>
                 <div className="fixed top-0 right-0 w-full bg-white shadow-md z-10">
                     <Navbar />
                 </div>
 
-                {/* Content below navbar */}
                 <main className="flex-1 p-4 mt-[60px] ml-[250px]">{children}</main>
             </div>
 
-            {/* Search Modal */}
             {showSearch && (
                 <div className="fixed inset-0 bg-gray bg-opacity-50 flex justify-center items-center z-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-[600px]"> {/* Increased width */}
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-[600px]">
                         <h2 className="text-xl font-bold mb-4 text-gray-600">Enter College Name</h2>
                         <input
                             type="text"
@@ -44,6 +40,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                             className="w-full h-[60px] p-4 border rounded-2xl shadow-lg outline-none text-blue-600 text-xl"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
+                            onKeyDown={(e) => e.key === "Enter" && handleSearch()} // Trigger search on Enter key
                         />
 
                         <div className="flex justify-end mt-4">
@@ -63,7 +60,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </div>
                 </div>
             )}
-
         </div>
     );
 }
