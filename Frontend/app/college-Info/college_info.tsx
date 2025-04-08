@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import collegeData from "@/app/college-Info/collegeData.json";

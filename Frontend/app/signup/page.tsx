@@ -36,6 +36,7 @@ export default function SignupPage() {
 
       const data = await res.json();
       alert(data.message);
+      alert("signed up successfully !")
     } catch (error) {
       console.error('Signup error:', error);
       alert('Something went wrong!');
