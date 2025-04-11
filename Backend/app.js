@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors'
 import {PORT,  ORIGIN} from './config/env.js'
+import authRouter from "./route/auth.route.js";
+import connectToDatabase from "./database/mongoose.js";
 const app = express();
 
 app.use(express.json());
@@ -11,6 +13,10 @@ app.use(cors({
   credentials: true
 }))
 
+app.use("/api/v1/auth" , authRouter);
+
+
+
 app.get('/change', (req, res) => {
   res.send("Hello from the backend");
 })
@@ -20,6 +26,7 @@ app.post('/change', (req, res) => {
 })
 
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+  await connectToDatabase();
   console.log(`Server started on port http://localhost:${PORT}`);
 })
