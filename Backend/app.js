@@ -1,113 +1,25 @@
-
-const express=require('express');
-const cors=require('cors');
-const dbconnection=require('./config/db')
-
-const app=express()
-const PORT=5000;
-
-
-app.use(cors())
-// it is going to allow the frontend to talk to backend
+import express from 'express';
+import cors from 'cors'
+import {PORT,  ORIGIN} from './config/env.js'
+const app = express();
 
 app.use(express.json());
-
-
-app.post('/api/signup',(req,res)=>{
-  const user={fullname,email,password,confirmPassword}=req.body;
-  console.log("received signup data");
-  console.log(fullname,email,password,confirmPassword)
-  console.log(user)
-  console.log("data received successfully!")
-
-});
-
-app.listen(PORT,()=>{
-  console.log("server is running on port 5000");
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const express=require('express');
-// const app=express()
-
-// const cors = require('cors');       // import cors
-// require('dotenv').config(); 
-// // load env variables
-
-// const PORT = process.env.PORT || 5000; // port to run server on
-// app.set('view engine','ejs')
-
-// // Middleware (these run before routes)
-// app.use(cors());                    // allow cross-origin
-// app.use(express.json());   
-//          // parse JSON body from frontend
-
-
-// app.get('/get-sign-up-data',function(req,res){
-//     console.log(res.query)
-//     res.send('data has been received!')
-// })
-
-// app.get('/',function(req,res){
-//     // res.send("hello world!");
-//     res.render('signup')
-// })
-
-// app.get('/about',function(req,res){
-//     res.send("aur bhyii aa gya swad!");
-// })
-
-
-
-// app.listen(5000);
-// // npx nodemon app.js
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.use(express.urlencoded({ extended: true }));
+app.use(cors({
+  origin: ORIGIN,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  credentials: true
+}))
+
+app.get('/change', (req, res) => {
+  res.send("Hello from the backend");
+})
+
+app.post('/change', (req, res) => {
+  console.log(req.body);
+})
+
+
+app.listen(PORT, () => {
+  console.log(`Server started on port http://localhost:${PORT}`);
+})
