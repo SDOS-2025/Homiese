@@ -17,7 +17,7 @@ export const signUp = async function (req, res) {
     session.startTransaction();
 
     try{
-        const {email , password} = req.body;
+        const {username , email , password} = req.body;
         const user = await User.findOne({email: email , password: password});
         if(user){
             await session.abortTransaction();
@@ -29,14 +29,15 @@ export const signUp = async function (req, res) {
 
         // we are safe to create the user as the user doesn't exist
         await User.create({
+            username : username,
             email : email,
             password: password,
         })
+
         await session.commitTransaction();
         await session.endSession();
 
-        console.log("User successfully logged in");
-        return res.status(202).json({
+        return res.status(201).json({
             success : true,
             message : "User successfully created Enjoy!!"
         })
@@ -69,14 +70,13 @@ export const signIn = async function(req , res) {
             })
         }
 
-        return res.status(202).send({
+        return res.status(201).send({
             success : true,
             message : "User successfully logged in"
         })
 
     }
     catch(err){
-        console.error(err.message);
         res.status(400).send({
             success : false,
             message : err.message,

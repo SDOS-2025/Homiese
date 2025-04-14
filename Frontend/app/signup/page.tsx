@@ -1,109 +1,141 @@
 'use client';
-import { useState } from 'react';
-import Link from 'next/link';
+import {useForm} from "react-hook-form"
+import signUpSchema from '@/formSchema/signUpPage';
+import {z} from "zod";
+import { zodResolver } from "@hookform/resolvers/zod"
+import axios from "axios";
+import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Button } from '@/components/ui/button';
+import Link from "next/link";
+import {NEXT_PUBLIC_SERVER_URL} from "@/config/config.js";
+
+// SERVER_URL is the base URL
 
 export default function SignupPage() {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  console.log(NEXT_PUBLIC_SERVER_URL)
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const form = useForm<z.infer<typeof signUpSchema>>(
+      {
+        resolver : zodResolver(signUpSchema),
+        defaultValues : {
+          username : "",
+          email : "",
+          password: "",
+          confirmPassword: "",
+        }
+      }
+  );
 
-    console.log("📤 Sending form data...");
-    console.log(formData);
+  async function onSubmit(values : z.infer<typeof signUpSchema>) {
+    try{
+        const response = await axios.post("http://localhost:8000/api/v1/auth/sign-up", {
+        username : values.username,
+        email : values.email,
+        password: values.password,
+      })
 
-    if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match!');
-      return;
+      if(response.status === 201){
+        //successful operation redirect it to the main page?
+        console.log("Redirecting")
+      }
+      else if(response.status === 202){
+        console.log("User Already Exists it is trying to sign in");
+      }
+      else {
+        console.log("Some Error for now")
+      }
     }
-
-    try {
-      const res = await fetch('http://localhost:5000/api/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-      alert(data.message);
-      alert("signed up successfully !")
-    } catch (error) {
-      console.error('Signup error:', error);
-      alert('Something went wrong!');
+    catch(error){
+      console.log(error);
     }
-  };
-
+  }
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-        <h2 className="text-2xl font-semibold text-center mb-6 text-black">Sign Up</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700">Full Name</label>
-            <input
-              type="text"
-              name="fullName"
-              value={formData.fullName}
-              onChange={handleChange}
-              className="w-full p-2 border rounded-lg"
-              placeholder="John Doe"
-              required
+    <main className={"h-[100vh] bg-gray-100 flex justify-center items-center "}>
+
+        <div className={"bg-white p-8 rounded-lg shadow-lg w-96  "}>
+            <h2 className="text-2xl font-semibold text-center mb-6 text-black">Sign Up</h2>
+
+            <Form {...form} >
+          <form onSubmit={form.handleSubmit(onSubmit)} className={"space-y-1"}>
+            <FormField
+                name={"username"}
+                control ={form.control}
+                render = {({field}) =>(
+
+                    <FormItem>
+                      <FormLabel>
+                        Username
+                      </FormLabel>
+                      <FormControl>
+                        <Input type={"string"} {...field}/>
+                      </FormControl>
+                      <FormDescription >
+
+                      </FormDescription>
+                      <FormMessage>
+
+                      </FormMessage>
+                    </FormItem>
+                )}
             />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full p-2 border rounded-lg"
-              placeholder="example@email.com"
-              required
+
+
+            <FormField name={"email"} control = {form.control}
+                       render={({field}) => (
+                           <FormItem>
+                             <FormLabel>
+                               Email
+                             </FormLabel>
+                             <FormControl>
+                               <Input type={"email"} {...field}/>
+                             </FormControl>
+                             <FormDescription />
+                             <FormMessage />
+                           </FormItem>
+                       )} />
+
+
+            <FormField name={"password"} control = {form.control}
+                       render={({field})=>(
+                           <FormItem>
+                             <FormLabel>
+                               Password
+                             </FormLabel>
+                             <FormControl>
+                               <Input type={"password"} {...field}/>
+                             </FormControl>
+                             <FormDescription />
+                             <FormMessage />
+                           </FormItem>
+                       )} />
+
+
+            <FormField control={form.control} name={"confirmPassword"}
+                       render={({field}) => (
+                           <FormItem>
+                             <FormLabel>
+                               Confirm Password
+                             </FormLabel>
+                             <FormControl>
+                               <Input type={"password"} {...field}/>
+                             </FormControl>
+                             <FormDescription />
+                             <FormMessage />
+                           </FormItem>
+                       )}
             />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full p-2 border rounded-lg"
-              placeholder="••••••••"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Confirm Password</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="w-full p-2 border rounded-lg"
-              placeholder="••••••••"
-              required
-            />
-          </div>
-          <button type="submit" className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition">
-            Sign Up
-          </button>
-        </form>
-        <p className="text-center text-sm text-gray-600 mt-4">
-          Already have an account? <Link href="/login" className="text-blue-500 hover:underline">Login</Link>
-        </p>
+
+            <Button type="submit" variant="outline">
+              Submit
+            </Button>
+          </form>
+        </Form>
+          <p className="text-center text-sm text-gray-600 mt-4">
+              Already have an account? <Link href="/login" className="text-blue-500 hover:underline">Login</Link>
+          </p>
       </div>
-    </div>
+    </main>
   );
 }
