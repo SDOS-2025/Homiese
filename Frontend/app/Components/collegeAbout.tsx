@@ -2,6 +2,7 @@
 
 import React from "react";
 interface objectProps {
+    College_name : string, 
     Highlights : string,
     Courses : string,
     Fees : string,
@@ -13,6 +14,7 @@ interface objectProps {
 
 export default function CollegeAbout(
     {
+        College_name,
         Highlights,
         Courses,
         AdmissionProcess,
@@ -27,7 +29,7 @@ export default function CollegeAbout(
       <div>
 
           <div id="college-info" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
-              <h2 className="text-xl font-semibold">IIIT Delhi Highlights 2024</h2>
+              <h2 className="text-xl font-semibold">{College_name} Highlights 2024</h2>
               <p className="mt-2 text-gray-300 text-justify">{Highlights}</p>
           </div>
 
@@ -35,34 +37,37 @@ export default function CollegeAbout(
 
           <div id="courses" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
               <h2 className="text-xl font-semibold">Courses</h2>
-              <p className="mt-2 text-gray-300 text-justify">{Courses}</p>
+              {/* <p className="mt-2 text-gray-300 text-justify">{Courses}</p> */}
+              <div className="mt-2 text-gray-300 text-justify" dangerouslySetInnerHTML={{ __html: Courses }} />
+
           </div>
 
           {/* Admission Process */}
           <div id="admissions" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
-              <h2 className="text-xl font-semibold">IIIT Delhi Admission Process and Important Dates 2024</h2>
-              <p className="mt-2 text-gray-300 text-justify">{AdmissionProcess}</p>
+              <h2 className="text-xl font-semibold">{College_name} Admission Process and Important Dates 2024</h2>
+              <div className="mt-2 text-gray-300 text-justify" dangerouslySetInnerHTML={{ __html: AdmissionProcess }} />
+
           </div>
 
           {/* Fees */}
 
           <div id="fees" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
               <h2 className="text-xl font-semibold">Fees</h2>
-              <p className="mt-2 text-gray-300 text-justify">{Fees}</p>
+              <div className="mt-2 text-gray-300 text-justify" dangerouslySetInnerHTML={{ __html: Fees }} />
           </div>
 
           {/* Placements */}
 
           <div id="placements" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
               <h2 className="text-xl font-semibold">Placements</h2>
-              <p className="mt-2 text-gray-300 text-justify">{Placements}</p>
+              <div className="mt-2 text-gray-300 text-justify" dangerouslySetInnerHTML={{ __html: Placements }} />
           </div>
 
           {/* Scholarships */}
 
           <div id="scholarships" className="mt-6 p-4 bg-gray-900 text-white shadow-lg rounded-lg max-w-3xl">
               <h2 className="text-xl font-semibold">Scholarships</h2>
-              <p className="mt-2 text-gray-300 text-justify">{Scholarships}</p>
+              <div className="mt-2 text-gray-300 text-justify" dangerouslySetInnerHTML={{ __html: Scholarships }} />
           </div>
 
           {/* reviews */}

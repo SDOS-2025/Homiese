@@ -67,6 +67,7 @@ export default function CollegePage() {
 
             {tab === 0 && (
                 <CollegeAbout
+                    College_name={college.name}
                     Highlights={college.highlights}
                     Courses={college.courses}
                     Fees={college.fees}
