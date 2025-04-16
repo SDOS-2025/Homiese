@@ -1,10 +1,12 @@
 import React from 'react'
+import { Routes,Route } from 'react-router-dom'
+import Messages from './pages/Messages'
 
 export default function App() {
   return (
-    <div className='text-5xl underline font-bold'>
-      This is a heading
-      
-    </div>
+    <Routes>
+      <Route index={true} element={<Messages/>}/>
+
+    </Routes>
   )
 }
