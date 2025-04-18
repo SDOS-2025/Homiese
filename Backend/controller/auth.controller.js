@@ -1,5 +1,7 @@
 import User from "../models/user.js";
 import mongoose from "mongoose";
+import jwt from "jsonwebtoken";
+import {JWT_KEY} from "../config/env.js";
 
 /*
    404 => failed transaction mostly database table error but not sure
@@ -12,76 +14,51 @@ import mongoose from "mongoose";
     created basic utility for the working app in the initial phase but model will be changed as we progress
  */
 
-export const signUp = async function (req, res) {
-    const session = await mongoose.startSession();
-    session.startTransaction();
 
+const maxDays = 3 * 24 * 60 * 1000 ;
+
+const generateToken = async (email , userID) => {
+    return await jwt.sign({email, userID}, JWT_KEY, {expiresIn: maxDays});
+};
+
+export const signUp = async (req, res) => {
     try{
-        const {username , email , password} = req.body;
-        const user = await User.findOne({email: email , password: password});
-        if(user){
-            await session.abortTransaction();
-            return res.status(202).json({
-                       success : false,
-                       message : "User already exists"
-                   })
+        const {username , email , password } = req.body;
+        if(!username || !email || !password){
+            return res.status(400).send({
+                "message" : "Username , email and password are required",
+            })
         }
 
-        // we are safe to create the user as the user doesn't exist
-        await User.create({
-            username : username,
-            email : email,
-            password: password,
-        })
-
-        await session.commitTransaction();
-        await session.endSession();
-
-        return res.status(201).json({
-            success : true,
-            message : "User successfully created Enjoy!!"
-        })
-    }
-    catch(err){
-        await session.abortTransaction();
-        await session.endSession();
-        res.status(400).send({
-            success : false,
-            message : err.message,
-        })
-    }
-}
-
-export const signIn = async function(req , res) {
-    try{
-        const {email , password} = req.body;
-        const user = await User.findOne({email : email});
+        const user = await User.create({username : username, email : email, password: password});
         if(!user){
-            return res.status(202).json({
-                success : false,
-                message : "User doesn't exist choose different option!!"
+            return res.status(400).send({
+                "message" : "Username or email already exists",
             })
         }
 
-        if(user.password !== password){
-            return res.status(202).send({
-                success : false ,
-                message : "Passowrd is wrong!!"
-            })
-        }
+        const token = await generateToken(email , user.id);
+        res.cookie("jwt" , token , {
+            maxAge: maxDays,
+            sameSite: "None",
+            secure: true,
+        });
 
         return res.status(201).send({
-            success : true,
-            message : "User successfully logged in"
-        })
+            user : {
+                id: user.id,
+                email: user.email,
+                profileSetup: user.profileSetup,
+            }})
 
-    }
-    catch(err){
-        res.status(400).send({
-            success : false,
-            message : err.message,
+    }catch(err){
+        console.log(err);
+        return res.status(500).send({
+            "message" : "database connection failed",
         })
     }
 }
 
-export default {signUp , signIn};
+export const login = async (req ,res) => {
+
+}
