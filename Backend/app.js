@@ -3,6 +3,10 @@ import cors from 'cors'
 import {PORT,  ORIGIN} from './config/env.js'
 import authRouter from "./route/auth.route.js";
 import connectToDatabase from "./database/mongoose.js";
+const userRoutes=require("./route/userRoute")
+const userRoute=require("./route/userRoute.js")
+
+
 const app = express();
 
 app.use(express.json());
