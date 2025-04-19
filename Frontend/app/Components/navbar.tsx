@@ -1,6 +1,13 @@
+"use client"
 import Image from "next/image";
 
-export default function Navbar() {
+
+export default function Navbar({
+    userName
+} : {
+    userName: string;
+}) {
+
 
     return (
     <div className="flex gap-x-10 justify-end shadow-sm bg-white h-16">
@@ -11,7 +18,7 @@ export default function Navbar() {
 
             <Image src="/User.png" alt="Login"  width={40} height={40}/>
             {/*User Name*/}
-            <span>Shaan Alam </span>
+            <span>{userName} </span>
             <Image src="/Dropdown.png" alt="Login"  width={15} height={15}/>
             
         </div>

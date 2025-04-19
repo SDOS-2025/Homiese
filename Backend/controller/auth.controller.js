@@ -2,6 +2,7 @@ import User from "../models/user.js";
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import {JWT_KEY} from "../config/env.js";
+import {compare} from "bcrypt";
 
 /*
    404 => failed transaction mostly database table error but not sure
@@ -15,10 +16,10 @@ import {JWT_KEY} from "../config/env.js";
  */
 
 
-const maxDays = 3 * 24 * 60 * 1000 ;
+const maxAge = 3 * 24 * 60 * 1000 ;
 
 const generateToken = async (email , userID) => {
-    return await jwt.sign({email, userID}, JWT_KEY, {expiresIn: maxDays});
+    return await jwt.sign({email, userID}, JWT_KEY, {expiresIn: maxAge});
 };
 
 export const signUp = async (req, res) => {
@@ -39,7 +40,7 @@ export const signUp = async (req, res) => {
 
         const token = await generateToken(email , user.id);
         res.cookie("jwt" , token , {
-            maxAge: maxDays,
+            maxAge: maxAge,
             sameSite: "None",
             secure: true,
         });
@@ -60,5 +61,68 @@ export const signUp = async (req, res) => {
 }
 
 export const login = async (req ,res) => {
+    try{
+        const { email , password } = req.body;
+        if( !email || !password){
+            return res.status(400).send({
+                "message" : "Username , email and password are required",
+            })
+        }
 
+        const user = await User.findOne({email : email});
+        const auth = await compare(password, user.password);
+        if(!user || !auth){
+            return res.status(400).send({
+                "message" : "email or password is incorrect",
+            })
+        }
+
+        const token = await generateToken(email , user.id);
+        console.log("Sending Cookie");
+
+        res.cookie("jwt" , token , {
+            maxAge: maxAge,
+            secure : true ,
+            sameSite : "None",
+        });
+
+        return res.status(201).send({
+            user : {
+                id: user.id,
+                email: user.email,
+                profileSetup: user.profileSetup,
+            }})
+
+    }catch(err){
+        console.log(err);
+        return res.status(500).send({
+            "message" : "database connection failed",
+        })
+    }
+
+}
+
+export const getUser = async (req , res ) =>{
+    try{
+
+        const user = await User.findById(req.userID);
+        return res.status(201).send({
+            user : {
+                id: req.userID,
+                email: user.email,
+                username : user.username,
+                profileSetup: user.profileSetup,
+                firstname : user.firstname,
+                lastname : user.lastname,
+                image : user.image,
+                color : user.color,
+            }}
+        )
+    }
+    catch(err){
+        console.log("Error: ", err);
+        return res.status(500).send({
+            "message" : err.message
+        })
+    }
 }

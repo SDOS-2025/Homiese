@@ -53,7 +53,7 @@ export default function SignupPage() {
 
               setTimeout(() => {
                   startTransition(() => {
-                      router.push("/profile");
+                      router.push("/");
                   });
                   setLoading(false);
               }, 100);
@@ -77,7 +77,7 @@ export default function SignupPage() {
                 </div>
                 :
             <div className={"bg-white p-8 rounded-lg shadow-lg w-96  "}>
-                <h2 className="text-2xl font-semibold text-center mb-6 text-black">Sign Up</h2>
+                <h2 className="text-2xl font-semibold text-center mb-6 text-black">Sign Up To Homiese</h2>
 
                 <Form {...form} >
                     <form onSubmit={form.handleSubmit(onSubmit)} className={"space-y-1"}>

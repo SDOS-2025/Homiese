@@ -5,18 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4c0b4ee-2846-434e-ab4c-47b99ee7afe6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/api-client.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/config/env.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/config/env.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Backend/middleware/auth.middleware.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/formSchema/loginPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/slice/auth.slice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/controller/auth.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/controller/auth.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/env.development.local" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/env.development.local" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/models/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Backend/route/auth.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/route/auth.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Components/Commentsection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/Components/Commentsection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(root)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(root)/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Components/navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/Components/navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/login/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/profile/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/signup/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/signup/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/constants.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,20 +43,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\DEEPESH SAHU\\OneDrive\\Desktop\\github\\Homiese\\Frontend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\DEEPESH SAHU\\OneDrive\\Desktop\\github\\Homiese\\Frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -69,6 +74,7 @@
       <updated>1744635401186</updated>
       <workItem from="1744635404506" duration="34000" />
       <workItem from="1744993493825" duration="3207000" />
+      <workItem from="1745030242221" duration="12507000" />
     </task>
     <servers />
   </component>
