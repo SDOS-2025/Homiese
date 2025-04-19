@@ -3,14 +3,11 @@ import cors from 'cors'
 import {PORT,  ORIGIN} from './config/env.js'
 import authRouter from "./route/auth.route.js";
 import connectToDatabase from "./database/mongoose.js";
-<<<<<<< HEAD
 import cookieParser from "cookie-parser";
-=======
 const userRoutes=require("./route/userRoute")
 const userRoute=require("./route/userRoute.js")
 
 
->>>>>>> 60ce79219aafd2469613705c7ae9379271fef38f
 const app = express();
 
 app.use(express.json());
