@@ -5,6 +5,7 @@ module.exports = {
     setupFilesAfterEnv: ['<rootDir>/jest.setup.cjs'],
     transform: {
       '^.+\\.(ts|tsx)$': 'ts-jest',
+      '^.+\\.js$': 'babel-jest',  // Ensure .js files are transformed by Babel
     },
     moduleNameMapper: {
       '^@/(.*)$': '<rootDir>/$1',
