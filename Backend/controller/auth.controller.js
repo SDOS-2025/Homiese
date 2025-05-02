@@ -25,6 +25,7 @@ const generateToken = async (email , userID) => {
 export const signUp = async (req, res) => {
     try{
         const {username , email , password } = req.body;
+        console.log("hehehe")
         if(!username || !email || !password){
             return res.status(400).send({
                 "message" : "Username , email and password are required",

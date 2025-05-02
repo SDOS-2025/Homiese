@@ -42,7 +42,7 @@ export default function MentorDisplay(
             onClick={() => window.location.href = "http://localhost:5173"}
             className={'rounded-xl shadow-sm w-[20%] font-semibold text-white bg-red-400 h-10 flex justify-center items-center cursor-pointer'}>
                 Connect
-            </div>
+            </div>
         </div>
     );
 }
